@@ -169,7 +169,7 @@ export default function Dashboard() {
                     <thead>
                       <tr>
                         <th className="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
-                          Page name
+                          Website name
                         </th>
                         <th className="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
                           Visitors
@@ -185,7 +185,7 @@ export default function Dashboard() {
                     <tbody>
                       <tr>
                         <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
-                          /argon/
+                          www.abc.com
                         </th>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                           4,569
@@ -200,7 +200,7 @@ export default function Dashboard() {
                       </tr>
                       <tr>
                         <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
-                          /argon/index.html
+                          www.abc.com
                         </th>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                           3,985
@@ -215,7 +215,7 @@ export default function Dashboard() {
                       </tr>
                       <tr>
                         <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
-                          /argon/charts.html
+                          www.abc.com
                         </th>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                           3,513
@@ -230,7 +230,7 @@ export default function Dashboard() {
                       </tr>
                       <tr>
                         <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
-                          /argon/tables.html
+                          www.abc.com
                         </th>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                           2,050
@@ -245,7 +245,7 @@ export default function Dashboard() {
                       </tr>
                       <tr>
                         <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
-                          /argon/profile.html
+                          www.abc.com
                         </th>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                           1,795
@@ -417,29 +417,20 @@ export default function Dashboard() {
               <hr className="mb-4 border-b-1 border-gray-300" />
               <div className="flex flex-wrap items-center md:justify-between justify-center">
                 <div className="w-full md:w-4/12 px-4">
-                  <div className="text-sm text-gray-600 font-semibold py-1">
-                    Copyright © {new Date().getFullYear()}{" "}
-                    <a
-                      href="https://www.creative-tim.com"
-                      className="text-gray-600 hover:text-gray-800 text-sm font-semibold py-1"
-                    >
-                      Creative Tim
-                    </a>
-                  </div>
+                  <div className="text-sm text-gray-600 font-semibold py-1"></div>
                 </div>
                 <div className="w-full md:w-8/12 px-4">
                   <ul className="flex flex-wrap list-none md:justify-end  justify-center">
                     <li>
                       <a
-                        href="https://www.creative-tim.com"
+                        href="#"
                         className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
                       >
-                        Creative Tim
                       </a>
                     </li>
                     <li>
                       <a
-                        href="https://www.creative-tim.com/presentation"
+                        href="#"
                         className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
                       >
                         About Us
@@ -447,7 +438,7 @@ export default function Dashboard() {
                     </li>
                     <li>
                       <a
-                        href="http://blog.creative-tim.com"
+                        href="#"
                         className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
                       >
                         Blog
@@ -455,7 +446,7 @@ export default function Dashboard() {
                     </li>
                     <li>
                       <a
-                        href="https://github.com/creativetimofficial/tailwind-starter-kit/blob/master/LICENSE.md"
+                        href="#"
                         className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
                       >
                         MIT License

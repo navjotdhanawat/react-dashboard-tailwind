@@ -17,10 +17,10 @@ export default function FooterSmall(props) {
               <div className="text-sm text-white font-semibold py-1">
                 Copyright © {new Date().getFullYear()}{" "}
                 <a
-                  href="https://www.creative-tim.com"
+                  href="#"
                   className="text-white hover:text-gray-400 text-sm font-semibold py-1"
                 >
-                  Creative Tim
+                  Brand Name
                 </a>
               </div>
             </div>
@@ -28,15 +28,15 @@ export default function FooterSmall(props) {
               <ul className="flex flex-wrap list-none md:justify-end  justify-center">
                 <li>
                   <a
-                    href="https://www.creative-tim.com"
+                    href="#"
                     className="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3"
                   >
-                    Creative Tim
+                    Brand Name
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://www.creative-tim.com/presentation"
+                    href="#"
                     className="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3"
                   >
                     About Us
@@ -44,7 +44,7 @@ export default function FooterSmall(props) {
                 </li>
                 <li>
                   <a
-                    href="http://blog.creative-tim.com"
+                    href="#"
                     className="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3"
                   >
                     Blog
@@ -52,7 +52,7 @@ export default function FooterSmall(props) {
                 </li>
                 <li>
                   <a
-                    href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md"
+                    href="#"
                     className="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3"
                   >
                     MIT License
