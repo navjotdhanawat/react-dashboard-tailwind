@@ -15,11 +15,11 @@ const ContextState = () => {
 
   const handleLogin = (username, password) => {
     login(username, password)
-      .then((data) => {
-        debugger
-        dispatchAuthReducer(ACTIONS.login_success());
+      .then(({token}) => {
+        if (token) {
+          dispatchAuthReducer(ACTIONS.login_success());
+        }
       }).catch((err) => {
-        debugger
         dispatchAuthReducer(ACTIONS.login_failure());
       });
 

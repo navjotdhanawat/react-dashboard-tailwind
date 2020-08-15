@@ -4,6 +4,7 @@ import history from "./utils/history";
 import Context from "./utils/context";
 
 import Login from "./views/Login";
+import Register from "./views/Register";
 import Dashboard from "./views/Dashboard";
 import { isLoggedIn } from "./_services/user.service";
 
@@ -29,6 +30,7 @@ const Routes = () => {
         <div>
           <Switch>
             <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
             <PrivateRoute
               exact
               path="/"

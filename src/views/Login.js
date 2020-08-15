@@ -1,38 +1,44 @@
-import React, { useContext, useEffect } from "react";
-
+import React, { useContext, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers";
+import * as yup from "yup";
 import Navbar from "../components/PublicNavbar.js";
 import FooterSmall from "../components/FooterSmall.js";
 import Context from "../utils/context";
+import {Checkbox, Input} from "../components/lib";
+
+const schema = yup.object().shape({
+  email: yup.string().required("Email is required"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password is too short - should be 8 chars minimum."),
+});
 
 export default function Login(props) {
-  const context = useContext(Context)
+  const context = useContext(Context);
+  const { register, handleSubmit, watch, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const handleLogin = () => {
-    console.log(context);
-    context.handleUserLogin("username", "password")
-  }
+  const onSubmit = (data) => context.handleUserLogin(data);
 
   useEffect(() => {
-    console.log('context.authState: ' , context.authState);
+    console.log("context.authState: ", context.authState);
     if (context.authState) {
-      props.history.push('/')
+      props.history.push("/");
     }
-  }, [context.authState])
+  }, [context.authState]);
+
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
 
   return (
     <>
       <Navbar transparent />
       <main>
-        <section className="absolute w-full h-full">
-          <div
-            className="absolute top-0 w-full h-full bg-gray-900"
-            style={{
-              backgroundImage:
-                "url(" + require("../assets/img/register_bg_2.png") + ")",
-              backgroundSize: "100%",
-              backgroundRepeat: "no-repeat"
-            }}
-          ></div>
+        <section className="absolute w-full h-full bg-gray-900">
           <div className="container mx-auto px-4 h-full">
             <div className="flex content-center items-center justify-center h-full">
               <div className="w-full lg:w-4/12 px-4">
@@ -75,81 +81,40 @@ export default function Login(props) {
                     <div className="text-gray-500 text-center mb-3 font-bold">
                       <small>Or sign in with credentials</small>
                     </div>
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                       <div className="relative w-full mb-3">
-                        <label
-                          className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                          htmlFor="grid-password"
-                        >
-                          Email
-                        </label>
-                        <input
+                        <Input
+                          ref={register({ required: true })}
+                          label="Email"
+                          placeholder="navjot@gmail.com"
                           type="email"
-                          className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
-                          placeholder="Email"
-                          style={{ transition: "all .15s ease" }}
+                          requiredError={errors.email}
                         />
                       </div>
 
                       <div className="relative w-full mb-3">
-                        <label
-                          className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                          htmlFor="grid-password"
-                        >
-                          Password
-                        </label>
-                        <input
+                        <Input
+                          ref={register({ required: true })}
+                          label="Password"
+                          placeholder="********"
                           type="password"
-                          className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
-                          placeholder="Password"
-                          style={{ transition: "all .15s ease" }}
+                          requiredError={errors.password}
                         />
                       </div>
                       <div>
-                        <label className="inline-flex items-center cursor-pointer">
-                          <input
-                            id="customCheckLogin"
-                            type="checkbox"
-                            className="form-checkbox text-gray-800 ml-1 w-5 h-5"
-                            style={{ transition: "all .15s ease" }}
-                          />
-                          <span className="ml-2 text-sm font-semibold text-gray-700">
-                            Remember me
-                          </span>
-                        </label>
+                        <Checkbox label="Remember Me" />
                       </div>
 
                       <div className="text-center mt-6">
                         <button
                           className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                          type="button"
+                          type="submit"
                           style={{ transition: "all .15s ease" }}
-                          onClick={handleLogin}
                         >
                           Sign In
                         </button>
                       </div>
                     </form>
-                  </div>
-                </div>
-                <div className="flex flex-wrap mt-6">
-                  <div className="w-1/2">
-                    <a
-                      href="#pablo"
-                      onClick={e => e.preventDefault()}
-                      className="text-gray-300"
-                    >
-                      <small>Forgot password?</small>
-                    </a>
-                  </div>
-                  <div className="w-1/2 text-right">
-                    <a
-                      href="#pablo"
-                      onClick={e => e.preventDefault()}
-                      className="text-gray-300"
-                    >
-                      <small>Create new account</small>
-                    </a>
                   </div>
                 </div>
               </div>

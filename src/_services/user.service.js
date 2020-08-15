@@ -2,17 +2,17 @@
 import { authHeader } from '../utils/auth-header';
 
 const config = {
-    apiUrl: 'http://localhost:3000'
+    apiUrl: 'http://localhost:3001'
 };
 
-const login = (username, password) => {
+const login = (email, password) => {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ email, password })
     };
 
-    return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
+    return fetch(`${config.apiUrl}/api/login`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
