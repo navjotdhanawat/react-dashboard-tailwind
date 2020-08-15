@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import Navbar from "../components/Navbar.js";
 import Sidebar from "../components/Sidebar.js";
 import LineChart from "../components/LineChart.js";
 import BarChart from "../components/BarChart.js";
+import { StatCard } from "../components/lib";
+import { DashboardContext } from "../utils/context";
 
 export default function Dashboard() {
+  const {sidebar} = useContext(DashboardContext)
   return (
-    <>
+    <DashboardContext.Provider value={{sidebar: false}}>
       <Sidebar />
-      <div className="relative md:ml-64 bg-gray-200">
+      <div className={`relative bg-gray-200 md:ml-64`}>
         <Navbar />
         {/* Header */}
         <div className="relative bg-pink-600 md:pt-32 pb-32 pt-12">
@@ -18,120 +21,36 @@ export default function Dashboard() {
               {/* Card stats */}
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-                  <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                    <div className="flex-auto p-4">
-                      <div className="flex flex-wrap">
-                        <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                          <h5 className="text-gray-500 uppercase font-bold text-xs">
-                            Traffic
-                          </h5>
-                          <span className="font-semibold text-xl text-gray-800">
-                            350,897
-                          </span>
-                        </div>
-                        <div className="relative w-auto pl-4 flex-initial">
-                          <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500">
-                            <i className="far fa-chart-bar"></i>
-                          </div>
-                        </div>
-                      </div>
-                        <p className="text-sm text-gray-500 mt-4">
-                        <span className="text-green-500 mr-2">
-                          <i className="fas fa-arrow-up"></i> 3.48%
-                        </span>
-                        <span className="whitespace-no-wrap">
-                          Since last month
-                        </span>
-                      </p>
-                    </div>
-                  </div>
+                  <StatCard
+                    age="Since last month"
+                    percent="3.45%"
+                    type="Traffic"
+                    stats="350,897"
+                  />
                 </div>
                 <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-                  <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                    <div className="flex-auto p-4">
-                      <div className="flex flex-wrap">
-                        <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                          <h5 className="text-gray-500 uppercase font-bold text-xs">
-                            New users
-                          </h5>
-                          <span className="font-semibold text-xl text-gray-800">
-                            2,356
-                          </span>
-                        </div>
-                        <div className="relative w-auto pl-4 flex-initial">
-                          <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-orange-500">
-                            <i className="fas fa-chart-pie"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-sm text-gray-500 mt-4">
-                        <span className="text-red-500 mr-2">
-                          <i className="fas fa-arrow-down"></i> 3.48%
-                        </span>
-                        <span className="whitespace-no-wrap">
-                          Since last week
-                        </span>
-                      </p>
-                    </div>
-                  </div>
+                  <StatCard
+                    age="Since last month"
+                    percent="3.45%"
+                    type="Traffic"
+                    stats="350,897"
+                  />
                 </div>
                 <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-                  <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                    <div className="flex-auto p-4">
-                      <div className="flex flex-wrap">
-                        <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                          <h5 className="text-gray-500 uppercase font-bold text-xs">
-                            Sales
-                          </h5>
-                          <span className="font-semibold text-xl text-gray-800">
-                            924
-                          </span>
-                        </div>
-                        <div className="relative w-auto pl-4 flex-initial">
-                          <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-pink-500">
-                            <i className="fas fa-users"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-sm text-gray-500 mt-4">
-                        <span className="text-orange-500 mr-2">
-                          <i className="fas fa-arrow-down"></i> 1.10%
-                        </span>
-                        <span className="whitespace-no-wrap">
-                          Since yesterday
-                        </span>
-                      </p>
-                    </div>
-                  </div>
+                  <StatCard
+                    age="Since last month"
+                    percent="3.45%"
+                    type="Traffic"
+                    stats="350,897"
+                  />
                 </div>
                 <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-                  <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                    <div className="flex-auto p-4">
-                      <div className="flex flex-wrap">
-                        <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                          <h5 className="text-gray-500 uppercase font-bold text-xs">
-                            Performance
-                          </h5>
-                          <span className="font-semibold text-xl text-gray-800">
-                            49,65%
-                          </span>
-                        </div>
-                        <div className="relative w-auto pl-4 flex-initial">
-                          <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-blue-500">
-                            <i className="fas fa-percent"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-sm text-gray-500 mt-4">
-                        <span className="text-green-500 mr-2">
-                          <i className="fas fa-arrow-up"></i> 12%
-                        </span>
-                        <span className="whitespace-no-wrap">
-                          Since last month
-                        </span>
-                      </p>
-                    </div>
-                  </div>
+                  <StatCard
+                    age="Since last month"
+                    percent="3.45%"
+                    type="Traffic"
+                    stats="350,897"
+                  />
                 </div>
               </div>
             </div>
@@ -425,8 +344,7 @@ export default function Dashboard() {
                       <a
                         href="#"
                         className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
-                      >
-                      </a>
+                      ></a>
                     </li>
                     <li>
                       <a
@@ -459,6 +377,6 @@ export default function Dashboard() {
           </footer>
         </div>
       </div>
-    </>
+    </DashboardContext.Provider>
   );
 }

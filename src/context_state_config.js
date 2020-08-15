@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from "react";
-import Context from "./utils/context";
+import {Context} from "./utils/context";
 import * as ACTIONS from "./store/actions/actions";
 
 import * as AuthReducer from "./store/reducers/auth_reducer";

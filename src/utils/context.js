@@ -2,4 +2,9 @@ import React from 'react';
 
 const Context = React.createContext()
 
-export default Context;
+const DashboardContext = React.createContext({});
+
+export  {
+    Context,
+    DashboardContext
+};

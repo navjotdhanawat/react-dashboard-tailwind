@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
 import Navbar from "../components/PublicNavbar.js";
 import FooterSmall from "../components/FooterSmall.js";
-import Context from "../utils/context";
+import {Context} from "../utils/context";
 import { Button, Input } from "../components/lib";
 
 const schema = yup.object().shape({

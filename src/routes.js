@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Router, Route, Switch, Redirect } from "react-router";
 import history from "./utils/history";
-import Context from "./utils/context";
+import {Context} from "./utils/context";
 
 import Login from "./views/Login";
 import Register from "./views/Register";
