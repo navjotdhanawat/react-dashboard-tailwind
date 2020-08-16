@@ -77,7 +77,7 @@ export default function Sidebar() {
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               <li className="items-center">
                 <Link
-                  className="text-pink-500 hover:text-pink-600 text-xs uppercase py-3 font-bold block"
+                  className="text-blue-500 hover:text-blue-600 text-xs uppercase py-3 font-bold block"
                   to="/dashboard"
                 >
                   <i className="fas fa-tv opacity-75 mr-2 text-sm"></i> Dashboard
@@ -105,7 +105,7 @@ export default function Sidebar() {
               <li className="items-center">
                 <Link
                   className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                  to="/"
+                  to="/login"
                 >
                   <i className="fas fa-fingerprint text-gray-500 mr-2 text-sm"></i> Login
                 </Link>
@@ -114,7 +114,7 @@ export default function Sidebar() {
               <li className="items-center">
                 <a
                   className="text-gray-400 text-xs uppercase py-3 font-bold block"
-                  href="#pablo"
+                  href="#"
                   onClick={e => e.preventDefault()}
                 >
                   <i className="fas fa-clipboard-list text-gray-400 mr-2 text-sm"></i> Register (soon)
@@ -124,7 +124,7 @@ export default function Sidebar() {
               <li className="items-center">
                 <a
                   className="text-gray-400 text-xs uppercase py-3 font-bold block"
-                  href="#pablo"
+                  href="#"
                   onClick={e => e.preventDefault()}
                 >
                   <i className="fas fa-tools text-gray-400 mr-2 text-sm"></i> Settings (soon)
