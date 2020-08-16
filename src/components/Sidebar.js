@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, NavNavLink } from "react-router-dom";
 
 import NotificationDropdown from "./NotificationDropdown.js";
 import UserDropdown from "./UserDropdown.js";
@@ -19,12 +19,12 @@ export default function Sidebar() {
             <i className="fas fa-bars"></i>
           </button>
           {/* Brand */}
-          <Link
+          <NavLink
             className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
             to="/"
           >
 
-          </Link>
+          </NavLink>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
             <li className="inline-block relative">
@@ -45,12 +45,12 @@ export default function Sidebar() {
             <div className="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-gray-300">
               <div className="flex flex-wrap">
                 <div className="w-6/12">
-                  <Link
+                  <NavLink
                     className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
                     to="/"
                   >
                     Tailwind Starter Kit
-                  </Link>
+                  </NavLink>
                 </div>
                 <div className="w-6/12 flex justify-end">
                   <button
@@ -76,39 +76,41 @@ export default function Sidebar() {
             {/* Navigation */}
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               <li className="items-center">
-                <Link
-                  className="text-blue-500 hover:text-blue-600 text-xs uppercase py-3 font-bold block"
+                <NavLink
+                  activeClassName="text-blue-500"
+                  className="hover:text-blue-600 text-xs uppercase py-3 font-bold block"
                   to="/dashboard"
                 >
                   <i className="fas fa-tv opacity-75 mr-2 text-sm"></i> Dashboard
-                </Link>
+                </NavLink>
               </li>
 
               <li className="items-center">
-                <Link
-                  className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                  to="/"
+                <NavLink
+                  activeClassName="text-blue-500"
+                  className="hover:text-blue-600 text-xs uppercase py-3 font-bold block"
+                  to="/landing-page"
                 >
                   <i className="fas fa-newspaper text-gray-500 mr-2 text-sm"></i> Landing Page
-                </Link>
+                </NavLink>
               </li>
 
               <li className="items-center">
-                <Link
+                <NavLink
                   className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
                   to="/"
                 >
                   <i className="fas fa-user-circle text-gray-500 mr-2 text-sm"></i> Profile Page
-                </Link>
+                </NavLink>
               </li>
 
               <li className="items-center">
-                <Link
+                <NavLink
                   className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
                   to="/login"
                 >
                   <i className="fas fa-fingerprint text-gray-500 mr-2 text-sm"></i> Login
-                </Link>
+                </NavLink>
               </li>
 
               <li className="items-center">
@@ -140,57 +142,57 @@ export default function Sidebar() {
             {/* Navigation */}
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="inline-flex">
-                <Link
+                <NavLink
                   className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
                   to="/"
                 >
                   <i className="fas fa-paint-brush mr-2 text-gray-500 text-base"></i> Styles
-                </Link>
+                </NavLink>
               </li>
 
               <li className="inline-flex">
-                <Link
+                <NavLink
                   className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
                   to="/"
                 >
                   <i className="fab fa-css3-alt mr-2 text-gray-500 text-base"></i> CSS Components
-                </Link>
+                </NavLink>
               </li>
 
               <li className="inline-flex">
-                <Link
+                <NavLink
                   className="text-gray-800 hover:text-gray-600 text-sm block mb-4 no-underline font-semibold"
                   to="/"
                 >
                   <i className="fab fa-vuejs mr-2 text-gray-500 text-base"></i> VueJS
-                </Link>
+                </NavLink>
               </li>
 
               <li className="inline-flex">
-                <Link
+                <NavLink
                   className="text-gray-800 hover:text-gray-600  text-sm block mb-4 no-underline font-semibold"
                   to="/"
                 >
                   <i className="fab fa-react mr-2 text-gray-500 text-base"></i> React
-                </Link>
+                </NavLink>
               </li>
 
               <li className="inline-flex">
-                <Link
+                <NavLink
                   className="text-gray-800 hover:text-gray-600  text-sm block mb-4 no-underline font-semibold"
                   to="/"
                 >
                   <i className="fab fa-angular mr-2 text-gray-500 text-base"></i> Angular
-                </Link>
+                </NavLink>
               </li>
 
               <li className="inline-flex">
-                <Link
+                <NavLink
                   className="text-gray-800 hover:text-gray-600  text-sm block mb-4 no-underline font-semibold"
                   to="/"
                 >
                   <i className="fab fa-js-square mr-2 text-gray-500 text-base"></i> Javascript
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>

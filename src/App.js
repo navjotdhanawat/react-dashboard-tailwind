@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState} from "react";
 import {Context} from "./utils/context";
 import * as ACTIONS from "./store/actions/actions";
 
@@ -6,7 +6,7 @@ import * as AuthReducer from "./store/reducers/auth_reducer";
 import Routes from "./routes";
 import { login, isLoggedIn } from "./_services/user.service";
 
-const ContextState = () => {
+const App = () => {
 
   const [stateAuthReducer, dispatchAuthReducer] = useReducer(
     AuthReducer.AuthReducer,
@@ -30,7 +30,6 @@ const ContextState = () => {
   };
 
   return (
-    <div>
       <Context.Provider
         value={{
           authState: stateAuthReducer.is_authenticated,
@@ -41,8 +40,7 @@ const ContextState = () => {
       >
         <Routes />
       </Context.Provider>
-    </div>
   );
 };
 
-export default ContextState;
+export default App;

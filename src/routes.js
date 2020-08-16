@@ -37,6 +37,18 @@ const Routes = () => {
               auth={context.authState}
               component={Dashboard}
             />
+            <PrivateRoute
+              exact
+              path="/dashboard"
+              auth={context.authState}
+              component={Dashboard}
+            />
+            <PrivateRoute
+              exact
+              path="/landing-page"
+              auth={context.authState}
+              component={Dashboard}
+            />
             <Redirect from="*" to="/" />
           </Switch>
         </div>
