@@ -51,8 +51,8 @@ function register(user) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };
-
-    return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
+    debugger
+    return fetch(`${config.apiUrl}/api/v1/admin/register`, requestOptions).then(handleResponse);
 }
 
 function update(user) {
@@ -76,8 +76,10 @@ function remove(id) {
 }
 
 function handleResponse(response) {
+    debugger
     return response.text().then(text => {
         const data = text && JSON.parse(text);
+        debugger
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api

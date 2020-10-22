@@ -6,6 +6,7 @@ import {Context} from "./utils/context";
 import Login from "./views/Login";
 import Register from "./views/Register";
 import Dashboard from "./views/Dashboard";
+import TheLayout from "./containers/TheLayout";
 import { isLoggedIn } from "./_services/user.service";
 
 
@@ -35,13 +36,13 @@ const Routes = () => {
               exact
               path="/"
               auth={context.authState}
-              component={Dashboard}
+              component={TheLayout}
             />
             <PrivateRoute
               exact
               path="/dashboard"
               auth={context.authState}
-              component={Dashboard}
+              component={TheLayout}
             />
             <PrivateRoute
               exact

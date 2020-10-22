@@ -1,10 +1,10 @@
 import React, { useReducer, useEffect, useState} from "react";
 import {Context} from "./utils/context";
 import * as ACTIONS from "./store/actions/actions";
-
+import './scss/style.scss';
 import * as AuthReducer from "./store/reducers/auth_reducer";
 import Routes from "./routes";
-import { login, isLoggedIn } from "./_services/user.service";
+import { login, isLoggedIn, register } from "./_services/user.service";
 
 const App = () => {
 
@@ -14,6 +14,7 @@ const App = () => {
   );
 
   const handleLogin = (username, password) => {
+    debugger
     login(username, password)
       .then(({token}) => {
         if (token) {
@@ -22,7 +23,10 @@ const App = () => {
       }).catch((err) => {
         dispatchAuthReducer(ACTIONS.login_failure());
       });
+  };
 
+  const handleRegister = (user) => {
+    return register(user)
   };
 
   const handleLogout = () => {
@@ -36,6 +40,7 @@ const App = () => {
           profileState: stateAuthReducer.profile,
           handleUserLogin: handleLogin,
           handleUserLogout: handleLogout,
+          handleUserRegister: handleRegister
         }}
       >
         <Routes />

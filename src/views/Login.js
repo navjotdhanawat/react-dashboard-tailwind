@@ -4,8 +4,25 @@ import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
 import Navbar from "../components/PublicNavbar.js";
 import FooterSmall from "../components/FooterSmall.js";
-import {Context} from "../utils/context";
-import {Checkbox, Input} from "../components/lib";
+import { Context } from "../utils/context";
+import { Checkbox, Input } from "../components/lib";
+
+import { Link } from "react-router-dom";
+import {
+  CButton,
+  CCard,
+  CCardBody,
+  CCardGroup,
+  CCol,
+  CContainer,
+  CForm,
+  CInput,
+  CInputGroup,
+  CInputGroupPrepend,
+  CInputGroupText,
+  CRow,
+} from "@coreui/react";
+import CIcon from "@coreui/icons-react";
 
 const schema = yup.object().shape({
   email: yup.string().required("Email is required"),
@@ -20,7 +37,7 @@ export default function Login(props) {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(schema),
   });
-
+  console.log(watch("email"));
   const onSubmit = (data) => context.handleUserLogin(data);
 
   useEffect(() => {
@@ -35,94 +52,86 @@ export default function Login(props) {
   }, [errors]);
 
   return (
-    <>
-      <Navbar transparent />
-      <main>
-        <section className="absolute w-full h-full bg-gray-900">
-          <div className="container mx-auto px-4 h-full">
-            <div className="flex content-center items-center justify-center h-full">
-              <div className="w-full lg:w-4/12 px-4">
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0">
-                  <div className="rounded-t mb-0 px-6 py-6">
-                    <div className="text-center mb-3">
-                      <h6 className="text-gray-600 text-sm font-bold">
-                        Sign in with
-                      </h6>
-                    </div>
-                    <div className="btn-wrapper text-center">
-                      <button
-                        className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
-                        type="button"
-                        style={{ transition: "all .15s ease" }}
+    <div className="c-app c-default-layout flex-row align-items-center">
+      <CContainer>
+        <CRow className="justify-content-center">
+          <CCol md="8">
+            <CCardGroup>
+              <CCard className="p-4">
+                <CCardBody>
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <h1>Login</h1>
+                    <p className="text-muted">Sign In to your account</p>
+                    <CInputGroup className="mb-3">
+                      <CInputGroupPrepend>
+                        <CInputGroupText>
+                          <CIcon name="cil-user" />
+                        </CInputGroupText>
+                      </CInputGroupPrepend>
+                      <CInput
+                        innerRef={register({ required: true })}
+                        name="email"
+                        placeholder="navjot@gmail.com"
+                        type="email"
+                      />
+                    </CInputGroup>
+                    <CInputGroup className="mb-4">
+                      <CInputGroupPrepend>
+                        <CInputGroupText>
+                          <CIcon name="cil-lock-locked" />
+                        </CInputGroupText>
+                      </CInputGroupPrepend>
+                      <CInput
+                        innerRef={register({ required: true })}
+                        name="password"
+                        placeholder="********"
+                        type="password"
+                      />
+                    </CInputGroup>
+                    <CRow>
+                      <CCol xs="6">
+                        <CButton type="submit" color="primary" className="px-4">
+                          Login
+                        </CButton>
+                      </CCol>
+                      <CCol xs="6" className="text-right">
+                        <CButton color="link" className="px-0">
+                          Forgot password?
+                        </CButton>
+                      </CCol>
+                    </CRow>
+                  </form>
+                </CCardBody>
+              </CCard>
+              <CCard
+                className="text-white bg-primary py-5 d-md-down-none"
+                style={{ width: "44%" }}
+              >
+                <CCardBody className="text-center">
+                  <div>
+                    <h2>Sign up</h2>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua.
+                    </p>
+                    <Link to="/register">
+                      <CButton
+                        color="primary"
+                        className="mt-3"
+                        active
+                        tabIndex={-1}
                       >
-                        <img
-                          alt="..."
-                          className="w-5 mr-1"
-                          src={require("../assets/img/github.svg")}
-                        />
-                        Github
-                      </button>
-                      <button
-                        className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
-                        type="button"
-                        style={{ transition: "all .15s ease" }}
-                      >
-                        <img
-                          alt="..."
-                          className="w-5 mr-1"
-                          src={require("../assets/img/google.svg")}
-                        />
-                        Google
-                      </button>
-                    </div>
-                    <hr className="mt-6 border-b-1 border-gray-400" />
+                        Register Now!
+                      </CButton>
+                    </Link>
                   </div>
-                  <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                    <div className="text-gray-500 text-center mb-3 font-bold">
-                      <small>Or sign in with credentials</small>
-                    </div>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                      <div className="relative w-full mb-3">
-                        <Input
-                          ref={register({ required: true })}
-                          label="Email"
-                          placeholder="navjot@gmail.com"
-                          type="email"
-                          requiredError={errors.email}
-                        />
-                      </div>
-
-                      <div className="relative w-full mb-3">
-                        <Input
-                          ref={register({ required: true })}
-                          label="Password"
-                          placeholder="********"
-                          type="password"
-                          requiredError={errors.password}
-                        />
-                      </div>
-                      <div>
-                        <Checkbox label="Remember Me" />
-                      </div>
-
-                      <div className="text-center mt-6">
-                        <button
-                          className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                          type="submit"
-                          style={{ transition: "all .15s ease" }}
-                        >
-                          Sign In
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <FooterSmall absolute />
-        </section>
-      </main>
-    </>
+                </CCardBody>
+              </CCard>
+            </CCardGroup>
+          </CCol>
+        </CRow>
+      </CContainer>
+    </div>
   );
 }

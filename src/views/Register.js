@@ -4,12 +4,27 @@ import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
 import Navbar from "../components/PublicNavbar.js";
 import FooterSmall from "../components/FooterSmall.js";
-import {Context} from "../utils/context";
+import { Context } from "../utils/context";
 import { Button, Input } from "../components/lib";
 
+import {
+  CButton,
+  CCard,
+  CCardBody,
+  CCardFooter,
+  CCol,
+  CContainer,
+  CForm,
+  CInput,
+  CInputGroup,
+  CInputGroupPrepend,
+  CInputGroupText,
+  CRow,
+} from "@coreui/react";
+import CIcon from "@coreui/icons-react";
+
 const schema = yup.object().shape({
-  firstname: yup.string().required("Firstname is required"),
-  lastname: yup.string().required("Lastname is required"),
+  name: yup.string().required("Name is required"),
   email: yup.string().required("Email is required"),
   password: yup
     .string()
@@ -23,84 +38,100 @@ export default function Register(props) {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => context.handleUserLogin(data);
-
-  useEffect(() => {
-    console.log("context.authState: ", context.authState);
-    if (context.authState) {
-      props.history.push("/");
-    }
-  }, [context.authState]);
+  const onSubmit = (data) => {
+    return context.handleUserRegister(data).then((data) => {
+      debugger;
+      props.history.push("/register");
+    });
+  };
 
   useEffect(() => {
     console.log(errors);
   }, [errors]);
 
   return (
-    <>
-      <Navbar transparent />
-      <main>
-        <section className="absolute w-full h-full bg-gray-900">
-          <div className="container mx-auto px-4 h-full">
-            <div className="flex content-center items-center justify-center h-full">
-              <div className="w-full lg:w-4/12 px-4">
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0">
-                  <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                    <div className="text-center mb-3 px-6 py-6">
-                      <h6 className="uppercase text-gray-600 text-sm font-bold">
-                        Signup
-                      </h6>
-                    </div>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                      <div className="relative w-full mb-3">
-                        <div className="flex flex-wrap -mx-3">
-                          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <Input
-                              label="First Name"
-                              placeholder="Jane"
-                              type="text"
-                              requiredError={errors.firstname}
-                            />
-                          </div>
-                          <div className="w-full md:w-1/2 px-3">
-                            <Input
-                              label="Last Name"
-                              placeholder="Doe"
-                              type="text"
-                              requiredError={errors.lastname}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="relative w-full mb-3">
-                        <Input
-                          label="Email"
-                          placeholder="JaneDoe@domain.com"
-                          type="email"
-                          requiredError={errors.email}
-                        />
-                      </div>
-
-                      <div className="relative w-full mb-3">
-                        <Input
-                          label="Password"
-                          placeholder="********"
-                          type="password"
-                          requiredError={errors.password}
-                        />
-                      </div>
-                      <div className="text-center mt-6">
-                        <Button label="Sign In" type="submit" />
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <FooterSmall absolute />
-        </section>
-      </main>
-    </>
+    <div className="c-app c-default-layout flex-row align-items-center">
+      <CContainer>
+        <CRow className="justify-content-center">
+          <CCol md="9" lg="7" xl="6">
+            <CCard className="mx-4">
+              <CCardBody className="p-4">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <h1>Register</h1>
+                  <p className="text-muted">Create your account</p>
+                  <CInputGroup className="mb-3">
+                    <CInputGroupPrepend>
+                      <CInputGroupText>
+                        <CIcon name="cil-user" />
+                      </CInputGroupText>
+                    </CInputGroupPrepend>
+                    <CInput
+                      innerRef={register({ required: true })}
+                      type="text"
+                      name="name"
+                      placeholder="Full Name"
+                      placeholder="Navjot Dhanawat"
+                    />
+                  </CInputGroup>
+                  <CInputGroup className="mb-3">
+                    <CInputGroupPrepend>
+                      <CInputGroupText>@</CInputGroupText>
+                    </CInputGroupPrepend>
+                    <CInput
+                      innerRef={register({ required: true })}
+                      name="email"
+                      placeholder="JaneDoe@domain.com"
+                      type="email"
+                    />
+                  </CInputGroup>
+                  <CInputGroup className="mb-3">
+                    <CInputGroupPrepend>
+                      <CInputGroupText>
+                        <CIcon name="cil-lock-locked" />
+                      </CInputGroupText>
+                    </CInputGroupPrepend>
+                    <CInput
+                      innerRef={register({ required: true })}
+                      name="password"
+                      placeholder="********"
+                      type="password"
+                    />
+                  </CInputGroup>
+                  <CInputGroup className="mb-4">
+                    <CInputGroupPrepend>
+                      <CInputGroupText>
+                        <CIcon name="cil-lock-locked" />
+                      </CInputGroupText>
+                    </CInputGroupPrepend>
+                    <CInput
+                      type="password"
+                      placeholder="Repeat password"
+                      autoComplete="new-password"
+                    />
+                  </CInputGroup>
+                  <CButton type="submit" color="success" block>
+                    Create Account
+                  </CButton>
+                </form>
+              </CCardBody>
+              <CCardFooter className="p-4">
+                <CRow>
+                  <CCol xs="12" sm="6">
+                    <CButton className="btn-facebook mb-1" block>
+                      <span>facebook</span>
+                    </CButton>
+                  </CCol>
+                  <CCol xs="12" sm="6">
+                    <CButton className="btn-twitter mb-1" block>
+                      <span>twitter</span>
+                    </CButton>
+                  </CCol>
+                </CRow>
+              </CCardFooter>
+            </CCard>
+          </CCol>
+        </CRow>
+      </CContainer>
+    </div>
   );
 }
