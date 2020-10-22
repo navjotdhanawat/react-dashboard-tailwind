@@ -13,7 +13,8 @@ import { isLoggedIn } from "./_services/user.service";
 const PrivateRoute = ({ component: Component, auth }) => (
   <Route
     render={(props) =>
-      isLoggedIn() ? (
+      isLoggedIn() ?
+      (
         <Component auth={auth} {...props} />
       ) : (
         <Redirect to={{ pathname: "/login" }} />
@@ -33,23 +34,11 @@ const Routes = () => {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <PrivateRoute
-              exact
               path="/"
               auth={context.authState}
               component={TheLayout}
             />
-            <PrivateRoute
-              exact
-              path="/dashboard"
-              auth={context.authState}
-              component={TheLayout}
-            />
-            <PrivateRoute
-              exact
-              path="/landing-page"
-              auth={context.authState}
-              component={Dashboard}
-            />
+
             <Redirect from="*" to="/" />
           </Switch>
         </div>
