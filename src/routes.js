@@ -38,7 +38,6 @@ const Routes = () => {
               auth={context.authState}
               component={TheLayout}
             />
-
             <Redirect from="*" to="/" />
           </Switch>
         </div>
