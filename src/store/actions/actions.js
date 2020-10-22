@@ -8,6 +8,21 @@ export const FAILURE = {
   type: ACTION_TYPES.FAILURE
 }
 
+export const loginRequest = (user) => {
+  debugger
+  return {
+    type: ACTION_TYPES.LOGIN_REQUEST,
+    payload: user
+  }
+}
+
+export const loginResponse = (user) => {
+  debugger
+  return {
+    type: ACTION_TYPES.LOGIN_RESPONSE,
+    payload: user
+  }
+}
 
 export const success = () => {
   return {

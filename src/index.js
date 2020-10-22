@@ -6,11 +6,9 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { icons } from './assets/icons'
 import { configureFakeBackend } from "./utils/fake-backend";
-// import './styles.css' // <- change './index.css' to './styles.css'
-import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import { Provider } from 'react-redux'
-import store from './store'
+import store from './store/index'
 
 
 

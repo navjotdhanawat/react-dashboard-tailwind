@@ -6,7 +6,8 @@ import Navbar from "../components/PublicNavbar.js";
 import FooterSmall from "../components/FooterSmall.js";
 import { Context } from "../utils/context";
 import { Checkbox, Input } from "../components/lib";
-
+import { connect } from "react-redux";
+import { loginRequest } from "../store/actions/actions";
 import { Link } from "react-router-dom";
 import {
   CButton,
@@ -32,13 +33,13 @@ const schema = yup.object().shape({
     .min(8, "Password is too short - should be 8 chars minimum."),
 });
 
-export default function Login(props) {
+export const Login = (props) => {
   const context = useContext(Context);
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(schema),
   });
   console.log(watch("email"));
-  const onSubmit = (data) => context.handleUserLogin(data);
+  const onSubmit = (data) => props.loginRequest(data);
 
   useEffect(() => {
     console.log("context.authState: ", context.authState);
@@ -135,3 +136,11 @@ export default function Login(props) {
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+const mapDispatchToProps = { loginRequest };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
