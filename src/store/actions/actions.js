@@ -1,4 +1,6 @@
 import * as ACTION_TYPES from './action_types'
+import history from "../../utils/history";
+
 
 export const SUCCESS = {
   type: ACTION_TYPES.SUCCESS
@@ -8,16 +10,24 @@ export const FAILURE = {
   type: ACTION_TYPES.FAILURE
 }
 
+export const checkAuth = () => {
+
+  return {
+    type: ACTION_TYPES.CHECK_AUTH
+  }
+}
+
 export const loginRequest = (user) => {
-  debugger
+
   return {
     type: ACTION_TYPES.LOGIN_REQUEST,
-    payload: user
+    payload: user,
+    history
   }
 }
 
 export const loginResponse = (user) => {
-  debugger
+
   return {
     type: ACTION_TYPES.LOGIN_RESPONSE,
     payload: user

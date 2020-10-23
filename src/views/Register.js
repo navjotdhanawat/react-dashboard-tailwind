@@ -40,7 +40,7 @@ export default function Register(props) {
 
   const onSubmit = (data) => {
     return context.handleUserRegister(data).then((data) => {
-      debugger;
+      ;
       props.history.push("/register");
     });
   };

@@ -39,14 +39,14 @@ export const Login = (props) => {
     resolver: yupResolver(schema),
   });
   console.log(watch("email"));
-  const onSubmit = (data) => props.loginRequest(data);
+  const onSubmit = (user) => props.loginRequest(user);
 
-  useEffect(() => {
-    console.log("context.authState: ", context.authState);
-    if (context.authState) {
-      props.history.push("/");
-    }
-  }, [context.authState]);
+  // useEffect(() => {
+  //   console.log("context.authState: ", props.isAuthenticated);
+  //   if (props.isAuthenticated) {
+  //     props.history.push("/dashboard");
+  //   }
+  // }, [props.isAuthenticated]);
 
   useEffect(() => {
     console.log(errors);
@@ -138,7 +138,7 @@ export const Login = (props) => {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  isAuthenticated: state.authentication.isAuthenticated
 });
 
 const mapDispatchToProps = { loginRequest };

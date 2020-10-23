@@ -4,6 +4,8 @@ export const SUCCESS = "SUCCESS"
 
 export const FAILURE = "FAILURE"
 
+export const CHECK_AUTH = "CHECK_AUTH"
+
 export const LOGIN_REQUEST = "LOGIN_REQUEST"
 
 export const LOGIN_RESPONSE = "LOGIN_RESPONSE"

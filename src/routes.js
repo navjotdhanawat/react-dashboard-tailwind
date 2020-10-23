@@ -10,21 +10,22 @@ import TheLayout from "./containers/TheLayout";
 import { isLoggedIn } from "./_services/user.service";
 
 
-const PrivateRoute = ({ component: Component, auth }) => (
-  <Route
-    render={(props) =>
-      isLoggedIn() ?
-      (
-        <Component auth={auth} {...props} />
-      ) : (
-        <Redirect to={{ pathname: "/login" }} />
-      )
-    }
-  />
-);
+const PrivateRoute = ({isAuthenticated, component: Component, auth}) => {
+  return (
+    <Route
+      render={(props) =>
+        isAuthenticated ?
+        (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: "/login" }} />
+        )
+      }
+    />
+  );
+}
 
-const Routes = () => {
-  const context = useContext(Context);
+const Routes = (props) => {
 
   return (
     <div>
@@ -34,8 +35,8 @@ const Routes = () => {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <PrivateRoute
+              isAuthenticated={props.isAuthenticated}
               path="/"
-              auth={context.authState}
               component={TheLayout}
             />
             <Redirect from="*" to="/" />

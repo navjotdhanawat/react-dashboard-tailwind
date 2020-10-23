@@ -11,7 +11,7 @@ const login = ({email, password}) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
     };
-    debugger
+
     return fetch(`${config.apiUrl}/api/v1/admin/login`, requestOptions)
         .then(handleResponse)
         .then(user => {
@@ -51,7 +51,7 @@ function register(user) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };
-    debugger
+
     return fetch(`${config.apiUrl}/api/v1/admin/register`, requestOptions).then(handleResponse);
 }
 
@@ -76,10 +76,10 @@ function remove(id) {
 }
 
 function handleResponse(response) {
-    debugger
+
     return response.text().then(text => {
         const data = text && JSON.parse(text);
-        debugger
+
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
@@ -95,7 +95,7 @@ function handleResponse(response) {
 }
 
 function isLoggedIn() {
-    return localStorage.getItem('user')
+    return JSON.parse(localStorage.getItem('user'))
 }
 
 
