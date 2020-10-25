@@ -6,19 +6,19 @@ const config = {
 };
 
 const login = ({ email, password }) => {
-  debugger;
   return axios
     .post(`/api/v1/admin/login`, { email, password })
-    .then(({data: response}) => {
-        const { data: { user }, success} = response;
-        debugger
-        if (success) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem("user", JSON.stringify(user));
-        }
-        return user;
+    .then(({ data: response }) => {
+      const {
+        data: { user },
+        success,
+      } = response;
+      if (success) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem("user", JSON.stringify(user));
       }
-    )
+      return user;
+    })
     .catch(({ response }) => {
       debugger;
     });
@@ -30,36 +30,20 @@ function logout() {
 }
 
 function register(user) {
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(user),
-  };
 
-  return fetch(
-    `${config.apiUrl}/api/v1/admin/register`,
-    requestOptions
-  ).then(() => {});
+  return axios
+    .post(`/api/v1/admin/register`, user)
+    .then(({ data: response }) => {
+      const {
+        message,
+        success,
+      } = response;
+      return success;
+    })
+    .catch(({ response }) => {
+      debugger;
+    });
 }
-
-// function handleResponse({data}) {
-//     debugger
-//     return response.text().then(text => {
-//         const data = text && JSON.parse(text);
-
-//         if (!response.ok) {
-//             if (response.status === 401) {
-//                 // auto logout if 401 response returned from api
-//                 logout();
-//             }
-
-//             const error = (data && data.message) || response.statusText;
-//             return Promise.reject(error);
-//         }
-
-//         return data;
-//     });
-// }
 
 function isLoggedIn() {
   return JSON.parse(localStorage.getItem("user"));

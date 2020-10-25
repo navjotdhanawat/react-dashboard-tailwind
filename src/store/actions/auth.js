@@ -1,5 +1,20 @@
 import * as ACTION_TYPES from '../types/auth'
-import history from "../../utils/history";
+
+export const registerRequest = (user) => {
+
+  return {
+    type: ACTION_TYPES.REGISTER_REQUEST,
+    payload: user
+  }
+}
+
+export const registerResponse = (user) => {
+
+  return {
+    type: ACTION_TYPES.REGISTER_SUCCESS,
+    payload: user
+  }
+}
 
 export const loginRequest = (user) => {
 
