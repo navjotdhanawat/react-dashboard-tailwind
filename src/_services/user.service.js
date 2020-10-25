@@ -1,111 +1,68 @@
-
-import { authHeader } from '../utils/auth-header';
+import { authHeader } from "../utils/auth-header";
+import axios from "axios";
 
 const config = {
-    apiUrl: 'http://localhost:3001'
+  apiUrl: "http://localhost:3001",
 };
 
-const login = ({email, password}) => {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-    };
-
-    return fetch(`${config.apiUrl}/api/v1/admin/login`, requestOptions)
-        .then(handleResponse)
-        .then(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
-
-            return user;
-        });
-}
+const login = ({ email, password }) => {
+  debugger;
+  return axios
+    .post(`/api/v1/admin/login`, { email, password })
+    .then(({data: response}) => {
+        const { data: { user }, success} = response;
+        debugger
+        if (success) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+        return user;
+      }
+    )
+    .catch(({ response }) => {
+      debugger;
+    });
+};
 
 function logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('user');
-}
-
-function getAll() {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-
-    return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
-}
-
-function getById(id) {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-
-    return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+  // remove user from local storage to log user out
+  localStorage.removeItem("user");
 }
 
 function register(user) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    };
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user),
+  };
 
-    return fetch(`${config.apiUrl}/api/v1/admin/register`, requestOptions).then(handleResponse);
+  return fetch(
+    `${config.apiUrl}/api/v1/admin/register`,
+    requestOptions
+  ).then(() => {});
 }
 
-function update(user) {
-    const requestOptions = {
-        method: 'PUT',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    };
+// function handleResponse({data}) {
+//     debugger
+//     return response.text().then(text => {
+//         const data = text && JSON.parse(text);
 
-    return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);;
-}
+//         if (!response.ok) {
+//             if (response.status === 401) {
+//                 // auto logout if 401 response returned from api
+//                 logout();
+//             }
 
-// prefixed function name with underscore because delete is a reserved word in javascript
-function remove(id) {
-    const requestOptions = {
-        method: 'DELETE',
-        headers: authHeader()
-    };
+//             const error = (data && data.message) || response.statusText;
+//             return Promise.reject(error);
+//         }
 
-    return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
-}
-
-function handleResponse(response) {
-
-    return response.text().then(text => {
-        const data = text && JSON.parse(text);
-
-        if (!response.ok) {
-            if (response.status === 401) {
-                // auto logout if 401 response returned from api
-                logout();
-            }
-
-            const error = (data && data.message) || response.statusText;
-            return Promise.reject(error);
-        }
-
-        return data;
-    });
-}
+//         return data;
+//     });
+// }
 
 function isLoggedIn() {
-    return JSON.parse(localStorage.getItem('user'))
+  return JSON.parse(localStorage.getItem("user"));
 }
 
-
-export  {
-    login,
-    logout,
-    register,
-    getAll,
-    getById,
-    update,
-    remove,
-    isLoggedIn
-};
+export { login, logout, register, isLoggedIn };

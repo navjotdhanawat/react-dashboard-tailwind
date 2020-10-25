@@ -3,6 +3,8 @@ import reducers from "./reducers";
 import createSagaMiddleware from "redux-saga";
 import { watchSagas } from "./sagas";
 import logger from 'redux-logger'
+import * as types from './types/auth';
+
 
 const saga = createSagaMiddleware();
 //redux dev tool
@@ -13,7 +15,13 @@ const composeEnhancers =
 const enhancer = composeEnhancers(applyMiddleware(saga, logger));
 
 const store = createStore(reducers, enhancer);
-store.dispatch({ type: 'LOGIN_RESPONSE', payload: JSON.parse(localStorage.getItem('user')) });
+const user = JSON.parse(localStorage.getItem('user'));
+if (user && user.token) {
+  store.dispatch({ type: types.LOGIN_SUCCESS, payload: user });
+} else {
+  store.dispatch({ type: types.LOGIN_FAILURE });
+}
+
 saga.run(watchSagas);
 
 export default store;

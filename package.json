@@ -17,6 +17,7 @@
     "@testing-library/user-event": "^7.1.2",
     "auth0-js": "9.13.4",
     "autoprefixer": "9.8.6",
+    "axios": "0.21.0",
     "chart.js": "2.9.3",
     "node-sass": "^4.14.1",
     "popper.js": "1.16.0",
@@ -35,11 +36,12 @@
     "yup": "0.29.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy" : "http://localhost:3000",
   "eslintConfig": {
     "extends": "react-app"
   },

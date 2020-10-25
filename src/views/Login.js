@@ -7,7 +7,7 @@ import FooterSmall from "../components/FooterSmall.js";
 import { Context } from "../utils/context";
 import { Checkbox, Input } from "../components/lib";
 import { connect } from "react-redux";
-import { loginRequest } from "../store/actions/actions";
+import { loginRequest } from "../store/actions/auth";
 import { Link } from "react-router-dom";
 import {
   CButton,
@@ -138,7 +138,7 @@ export const Login = (props) => {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.authentication.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 const mapDispatchToProps = { loginRequest };
